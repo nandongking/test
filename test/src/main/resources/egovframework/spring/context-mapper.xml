@@ -11,7 +11,18 @@
 
 	<!-- MapperConfigurer setup for MyBatis Database Layer with @Mapper("deptMapper") in DeptMapper Interface -->
  	<bean class="egovframework.rte.psl.dataaccess.mapper.MapperConfigurer">
-		<property name="basePackage" value="egovframework.example.sample.service.impl" />
+		<property name="basePackage" value="egovframework.example.sample.service.impl, kr.co.test.service.impl" />
 	</bean>
+	
+	
+	<!-- <bean id="sqlSessionTest" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:/egovframework/sqlmap/example/sql-mapper-config.xml" />
+		<property name="mapperLocations" value="classpath:/egovframework/sqlmap/example/mappers/*.xml" />
+	</bean> -->
+	<!-- <bean class="egovframework.rte.psl.dataaccess.mapper.MapperConfigurer">
+		<property name="testPackage" value="kr.co.test.service.impl" />
+		<property name="sqlSessionTest" value="sqlSession" />
+	</bean> -->
     
 </beans>

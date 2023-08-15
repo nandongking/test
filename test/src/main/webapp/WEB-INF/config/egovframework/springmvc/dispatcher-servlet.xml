@@ -7,7 +7,7 @@
                 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
                 http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
-    <context:component-scan base-package="egovframework">
+    <context:component-scan base-package="egovframework, kr">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
@@ -18,6 +18,14 @@
             <bean class="egovframework.example.cmmn.web.EgovBindingInitializer"/>
         </property>
     </bean>
+    
+    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"> 
+	    <property name="order" value="0"/> 
+	</bean> 
+	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"> 
+	    <property name="contentType" value="application/json;charset=UTF-8"> </property> 
+	</bean>
+
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
         <property name="interceptors">
             <list>
@@ -47,6 +55,10 @@
     <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="1"
 	    p:viewClass="org.springframework.web.servlet.view.JstlView"
 	    p:prefix="/WEB-INF/jsp/egovframework/example/" p:suffix=".jsp"/>
+	    
+    <!-- <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="2"
+	    p:viewClass="org.springframework.web.servlet.view.JstlView"
+	    p:prefix="/WEB-INF/jsp/egovframework/test/" p:suffix=".jsp"/> -->
 
     <!-- For Pagination Tag -->
     <bean id="imageRenderer" class="egovframework.example.cmmn.web.EgovImgPaginationRenderer"/>
